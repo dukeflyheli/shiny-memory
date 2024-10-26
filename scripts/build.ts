@@ -26,6 +26,7 @@ execSync('npx remix vite:build', {
         /"url":"\/","basename":"\/"/g,
         `"url":"REPLACE_ME_MOUNT_PATH","basename":"REPLACE_ME_MOUNT_PATH"`
       )
+      .replaceAll('REPLACE_ME_MOUNT_PATH','')
   );
   console.log('Modified `index.html` public paths.');
 }
