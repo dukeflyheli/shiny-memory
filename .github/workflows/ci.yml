@@ -1,6 +1,10 @@
 # .github/workflow/ci.yml
-name: npm run build
+name: build and deploy
 on: [push]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,3 +18,4 @@ jobs:
       - uses: actions/upload-pages-artifact@v3.0.1
         with:
           path: build
+      - uses: actions/deploy-pages@v4.0.5
