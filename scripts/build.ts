@@ -50,3 +50,7 @@ execSync('npx remix vite:build', {
   );
   console.log('Modified `manifest-*.js` public paths.');
 }
+
+execSync('ln build/client/index.html build/client/404.html', {
+  cwd: root,
+});
