@@ -20,4 +20,7 @@ export default defineConfig({
     }),
     tsconfigPaths(),
   ],
+  build: {
+    manifest: true
+  }
 });
