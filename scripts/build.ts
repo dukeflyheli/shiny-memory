@@ -51,6 +51,8 @@ execSync("npx remix vite:build", {
   console.log("Modified `manifest-*.js` public paths.");
 }
 
+// grab routes to create index pages at those paths for github-pages compat with SPA. https://github.com/rafgraph/spa-github-pages pages looks for index.html at path, if not found returns 404, so hard link index.html under folder paths from route paths
+// alt way to get routes use @remix-run/dev routes --json to export.
 {
   const assetsFolder = join(root, "build/client/assets");
   const files = readdirSync(assetsFolder);
@@ -62,14 +64,11 @@ execSync("npx remix vite:build", {
     with (glob) {
       ${manifestFileBody}
     }
-    return glob;
-    `);
-  const routes = Object.values(w().window.__remixManifest.routes).filter(
-    (i) => i.path?.length
-  );
+    return Object.values(glob.window.__remixManifest.routes).map(i => i.path).filter(i => i);
+    `) as () => string[];
+  const routes = w();
   for (const route of routes) {
-    const { path } = route;
-    const routePath = `build/client/${path}`;
+    const routePath = `build/client/${route}`;
     execSync(`mkdir ${routePath}`);
     execSync(`ln build/client/index.html ${routePath}/index.html`, {
       cwd: root,

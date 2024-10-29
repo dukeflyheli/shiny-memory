@@ -1,6 +1,6 @@
-import {vitePlugin as remix} from '@remix-run/dev';
-import {defineConfig} from 'vite';
-import tsconfigPaths from 'vite-tsconfig-paths';
+import { vitePlugin as remix } from "@remix-run/dev";
+import { defineConfig } from "vite";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
   // base: "/",
@@ -15,12 +15,12 @@ export default defineConfig({
         v3_throwAbortReason: true,
       },
       buildEnd: async () => {
-        console.log('asdf');
+        console.log("asdf");
       },
     }),
     tsconfigPaths(),
   ],
   build: {
-    manifest: true
-  }
+    manifest: false,
+  },
 });
