@@ -69,7 +69,7 @@ execSync("npx remix vite:build", {
   const routes = w();
   for (const route of routes) {
     const routePath = `build/client/${route}`;
-    execSync(`mkdir ${routePath}`);
+    execSync(`mkdir -p ${routePath}`);
     execSync(`ln build/client/index.html ${routePath}/index.html`, {
       cwd: root,
     });
